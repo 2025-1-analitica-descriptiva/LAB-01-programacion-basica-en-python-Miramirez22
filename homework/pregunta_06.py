@@ -24,7 +24,6 @@ def pregunta_06():
      ('hhh', 0, 9),
      ('iii', 0, 9),
      ('jjj', 5, 17)]
-
     """
     with open('files/input/data.csv', 'r') as file:
         lines = file.readlines()
@@ -32,8 +31,8 @@ def pregunta_06():
     data_dict = {}
 
     for line in lines:
-        columns = line.strip().split()
-        if len(columns) > 5:
+        columns = line.strip().split('\t')
+        if len(columns) > 4:
             dict_str = columns[4]
             items = dict_str.split(',')
             for item in items:
