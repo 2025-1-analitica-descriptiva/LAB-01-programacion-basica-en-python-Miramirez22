@@ -21,6 +21,22 @@ def pregunta_09():
      'ggg': 13,
      'hhh': 16,
      'iii': 18,
-     'jjj': 18}}
-
+     'jjj': 18}
     """
+    with open('files/input/data.csv', 'r') as file:
+        lines = file.readlines()
+
+    key_count = {}
+
+    for line in lines:
+        columns = line.strip().split('\t')
+        if len(columns) > 4:
+            items = columns[4].split(',')
+            for item in items:
+                key = item.split(':')[0]
+                if key not in key_count:
+                    key_count[key] = 1
+                else:
+                    key_count[key] += 1
+
+    return dict(sorted(key_count.items()))
