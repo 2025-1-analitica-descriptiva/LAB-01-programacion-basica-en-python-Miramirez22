@@ -13,6 +13,21 @@ def pregunta_11():
 
     Rta/
     {'a': 122, 'b': 49, 'c': 91, 'd': 73, 'e': 86, 'f': 134, 'g': 35}
-
-
     """
+    with open('files/input/data.csv', 'r') as file:
+        lines = file.readlines()
+
+    letter_sums = {}
+
+    for line in lines:
+        columns = line.strip().split('\t')
+        if len(columns) > 4:
+            value = int(columns[1])
+            letters = columns[3].split(',')
+            for letter in letters:
+                if letter not in letter_sums:
+                    letter_sums[letter] = value
+                else:
+                    letter_sums[letter] += value
+
+    return dict(sorted(letter_sums.items()))
