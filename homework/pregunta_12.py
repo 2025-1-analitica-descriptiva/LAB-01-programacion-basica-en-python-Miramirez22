@@ -13,5 +13,21 @@ def pregunta_12():
 
     Rta/
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
-
     """
+    with open('files/input/data.csv', 'r') as file:
+        lines = file.readlines()
+
+    result = {}
+
+    for line in lines:
+        columns = line.strip().split('\t')
+        if len(columns) > 4:
+            letter = columns[0]
+            valores = columns[4].split(',')
+            suma = sum(int(item.split(':')[1]) for item in valores)
+            if letter in result:
+                result[letter] += suma
+            else:
+                result[letter] = suma
+
+    return result
